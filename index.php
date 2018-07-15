@@ -1,41 +1,14 @@
 <?php
 
+
 require 'functions.php';
+require 'connectToDb.php';
+require 'Task.php';
 
+$pdo = connectToDb();
 
+$tasks = fetchAllTasks($pdo);
 
-//Todo, Comment, User, Session
-class Task {
-    //we will need a description of the task
-    public $description;
-
-    public $completed = false;
-    
-    public function __construct($description)
-    {
-        //Automatically triggered when the class is called
-        $this->description = $description;
-    }
-
-    public function complete() 
-    {
-        $this->completed = true;
-    }
-
-    public function isComplete () 
-    {
-        return $this->completed;
-    }
-}
-
-$tasks = [
-    new Task('Got to the store'),
-    new Task('Do screencasts'),
-    new Task('get better at php')
-];
-
-$tasks[0]->complete();
-$tasks[2]->complete();
-// dd($tasks);
+// var_dump($tasks[0]->description);
 
 require 'index.view.php';
